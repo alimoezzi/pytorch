@@ -31,7 +31,7 @@ from torch.fx.experimental.proxy_tensor import make_fx
 from torch.nn.parallel import DistributedDataParallel
 from torch.testing._internal.common_distributed import (
     MultiProcessTestCase,
-    skip_if_lt_x_gpu,
+    skip_if_lt_x_gpu
 )
 from torch.testing._internal.common_utils import (
     retry_on_connect_failures,
@@ -55,6 +55,8 @@ load_tests = load_tests
 
 if platform == "darwin":
     LOOPBACK = "lo0"
+elif platform == "win32":
+    LOOPBACK = "Loopback Pseudo-Interface 1"
 else:
     LOOPBACK = "lo"
 
