@@ -31,6 +31,7 @@ from torch.fx.experimental.proxy_tensor import make_fx
 from torch.nn.parallel import DistributedDataParallel
 from torch.testing._internal.common_distributed import (
     MultiProcessTestCase,
+    skip_if_win32,
     skip_if_lt_x_gpu
 )
 from torch.testing._internal.common_utils import (
@@ -1743,9 +1744,11 @@ class ProcessGroupWithDispatchedCollectivesTests(MultiProcessTestCase):
         except OSError:
             pass
 
+    @skip_if_win32()
     def test_init_process_group_optional_backend(self):
         with tempfile.NamedTemporaryFile() as f:
             store = dist.FileStore(f.name, self.world_size)
+            print(f.name)
             # creates both gloo and nccl backend
             if dist.is_gloo_available() and dist.is_nccl_available():
                 dist.init_process_group(
