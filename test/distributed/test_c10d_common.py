@@ -1757,7 +1757,7 @@ class ProcessGroupWithDispatchedCollectivesTests(MultiProcessTestCase):
                     world_size=self.world_size,
                 )
                 dist.destroy_process_group()
-
+    @skip_if_win32()
     def test_init_process_group_for_all_backends(self):
         for backend in dist.Backend.backend_list:
             # skip if the backend is not available on the system
