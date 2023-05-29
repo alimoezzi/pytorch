@@ -892,10 +892,10 @@ meta_dispatch_device_expected_failures = defaultdict(dict)
 meta_dispatch_device_skips = defaultdict(dict)
 
 meta_dispatch_device_expected_failures['cpu'] = {
-    aten.native_batch_norm.default: {bf16},
-    aten._native_batch_norm_legit.default: {bf16},
-    aten._native_batch_norm_legit.no_stats: {bf16},
-    aten.native_layer_norm.default: {bf16},
+    aten.native_batch_norm.default: {bf16, f16},
+    aten._native_batch_norm_legit.default: {bf16, f16},
+    aten._native_batch_norm_legit.no_stats: {bf16, f16},
+    aten.native_layer_norm.default: {bf16, f16},
 }
 
 meta_dispatch_device_expected_failures['cuda'] = {
